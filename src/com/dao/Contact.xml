@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
+<mapper namespace="com.dao.ContactDao">
+    <!-- statement，内容：sql语句。id：唯一标识，随便写，在同一个命名空间下保持唯一
+       resultType：sql语句查询结果集的封装类型,tb_user即为数据库中的表
+     -->
+    <select id="selectAll" resultType="com.pojo.Contact" >
+       select * from `contact`;
+    </select>
+    <insert id="addContact" parameterType="com.pojo.Contact" >
+        insert into `contact`(name,address,phone,email) values(#{name},#{address},#{phone},#{email} );
+    </insert>
+    <delete id="deleteContact" parameterType="java.lang.String">
+        delete from contact where id=#{id};
+    </delete>
+    <update id="updateContact" parameterType="com.pojo.Contact">
+        update contact set name=#{name},phone=#{phone},address=#{address},email=#{email} where id=#{id}
+    </update>
+</mapper>
